@@ -24,25 +24,41 @@ public class AuthenticationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		HttpServletRequest req = (HttpServletRequest) request;
+		 HttpServletRequest httpRequest = (HttpServletRequest) request;
+	        HttpSession session = httpRequest.getSession(false);
+	 
+	        boolean isLoggedIn = (session != null && session.getAttribute("username") != null);
+	 
+	        String loginURI = httpRequest.getContextPath() + "/admin/Login";
+	 
+	        boolean isLoginRequest = httpRequest.getRequestURI().equals(loginURI);
+	 
+	        boolean isLoginPage = httpRequest.getRequestURI().endsWith("login.jsp");
+	        
+//	        System.out.println("isLoggedIn:"+isLoggedIn);
+//	        System.out.println("isLoginRequest:"+isLoginRequest);
+//	        System.out.println("isLoginPage:"+isLoginPage);
+	 
+	        if (isLoggedIn && (isLoginRequest || isLoginPage)) {
+	            // the admin is already logged in and he's trying to login again
+	            // then forwards to the admin's homepage
+	            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/");
+	            dispatcher.forward(request, response);
 
-		String requestURI = req.getRequestURI();
-		String signinURI = req.getContextPath() + "/admin/signin.jsp";
-		String LoginControllerURI = req.getContextPath() + "/Login";
-		HttpSession session = req.getSession(true);
-		String userName = (String) session.getAttribute("username");
-		System.out.println("requestURI:" + requestURI);
-		System.out.println("signinURI:" + signinURI);
-		System.out.println("LoginControllerURI:" + LoginControllerURI);
-		System.out.println("userName:" + userName);
+	 
+	        } else if (isLoggedIn || isLoginRequest) {
+	            // continues the filter chain
+	            // allows the request to reach the destination
+	            chain.doFilter(request, response);
+	 
+	        } else {
+	            // the admin is not logged in, so authentication is required
+	            // forwards to the Login page
+	            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/login.jsp");
+	            dispatcher.forward(request, response);
 
-		if (userName != null) {
-
-			chain.doFilter(request, response);
-		} else {
-			RequestDispatcher requestdispatcher = request.getRequestDispatcher("/admin/signin.jsp");
-			requestdispatcher.forward(request, response);
-		}
+	 
+	        }
 
 	}
 

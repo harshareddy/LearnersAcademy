@@ -81,7 +81,7 @@ public class SubjectServlet extends HttpServlet {
 			subjectDao.createSubject(new Subject(subjectName.trim()));
 		}
 
-		response.sendRedirect(request.getContextPath() + "/Subjects");
+		response.sendRedirect(request.getContextPath() + "/admin/Subjects");
 
 	}
 
@@ -109,7 +109,7 @@ public class SubjectServlet extends HttpServlet {
 
 		subjectDao.updateSubject(subject);
 
-		response.sendRedirect(request.getContextPath() + "/Subjects");
+		response.sendRedirect(request.getContextPath() + "/admin/Subjects");
 
 	}
 
@@ -122,7 +122,7 @@ public class SubjectServlet extends HttpServlet {
 
 		}
 
-		response.sendRedirect(request.getContextPath() + "/Subjects");
+		response.sendRedirect(request.getContextPath() + "/admin/Subjects");
 
 	}
 

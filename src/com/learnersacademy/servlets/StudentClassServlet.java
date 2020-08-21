@@ -63,7 +63,7 @@ public class StudentClassServlet extends HttpServlet {
 
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/StudentAllocation");
+		response.sendRedirect(request.getContextPath()+"/admin/StudentAllocation");
 
 	}
 
@@ -99,7 +99,7 @@ public class StudentClassServlet extends HttpServlet {
 			studentDAO.updateStudent(student);
 
 		}
-		response.sendRedirect(request.getContextPath() + "/StudentAllocation");
+		response.sendRedirect(request.getContextPath() + "/admin/StudentAllocation");
 
 	}
 

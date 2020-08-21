@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.0.1">
-    <title>Signin</title>
+    <title>Login</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
 
@@ -36,13 +36,13 @@
     <link href="<%=request.getContextPath()%>/signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
-    <form class="form-signin" action="Login" method="post">
-	  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <form class="form-signin" action="<%=request.getContextPath()%>/admin/Login" method="post">
+	  <h1 class="h3 mb-3 font-weight-normal">Please Log in</h1>
 	  <label for="inputEmail" class="sr-only">Email address</label>
 	  <input type="email" id="inputEmail" name="inputemail" class="form-control" placeholder="Email address" required autofocus>
 	  <label for="inputPassword" class="sr-only">Password</label>
 	  <input type="password" id="inputPassword" name= "password" class="form-control" placeholder="Password" required>	  
-		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>  	  
+		  <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>  	  
 		  <c:if test="${loginmessage!=null}">
 	     <span style="color: red;"><c:out value="${loginmessage}"></c:out></span>
     </c:if>

@@ -78,7 +78,7 @@ public class TeacherServlet extends HttpServlet {
 
 		}
 
-		response.sendRedirect(request.getContextPath() + "/Teachers");
+		response.sendRedirect(request.getContextPath() + "/admin/Teachers");
 
 	}
 
@@ -96,7 +96,7 @@ public class TeacherServlet extends HttpServlet {
 
 		}
 
-		response.sendRedirect(request.getContextPath() + "/Teachers");
+		response.sendRedirect(request.getContextPath() + "/admin/Teachers");
 
 	}
 
@@ -111,7 +111,7 @@ public class TeacherServlet extends HttpServlet {
 
 		}
 
-		response.sendRedirect(request.getContextPath() + "/Teachers");
+		response.sendRedirect(request.getContextPath() + "/admin/Teachers");
 
 	}
 

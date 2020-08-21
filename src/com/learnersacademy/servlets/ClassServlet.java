@@ -74,7 +74,7 @@ public class ClassServlet extends HttpServlet {
 
 		}
 
-		response.sendRedirect(request.getContextPath() + "/Classes");
+		response.sendRedirect(request.getContextPath() + "/admin/Classes");
 
 	}
 
@@ -85,7 +85,7 @@ public class ClassServlet extends HttpServlet {
 			sclassDao.deleteSClass(Integer.parseInt(id));
 		}
 
-		response.sendRedirect(request.getContextPath() + "/Classes");
+		response.sendRedirect(request.getContextPath() + "/admin/Classes");
 	}
 
 	private void updateClass(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -98,7 +98,7 @@ public class ClassServlet extends HttpServlet {
 
 		}
 
-		response.sendRedirect(request.getContextPath() + "/Classes");
+		response.sendRedirect(request.getContextPath() + "/admin/Classes");
 
 	}
 

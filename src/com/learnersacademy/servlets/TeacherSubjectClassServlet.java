@@ -93,7 +93,7 @@ public class TeacherSubjectClassServlet extends HttpServlet {
 			subjectClassDAO.updateSubjectClass(subjectClass);
 
 		}
-		response.sendRedirect(request.getContextPath() + "/TeacherAllocation");
+		response.sendRedirect(request.getContextPath() + "/admin/TeacherAllocation");
 
 	}
 
@@ -108,7 +108,7 @@ public class TeacherSubjectClassServlet extends HttpServlet {
 			subjectClassDAO.updateSubjectClass(subjectclass);
 		}
 
-		response.sendRedirect(request.getContextPath() + "/TeacherAllocation");
+		response.sendRedirect(request.getContextPath() + "/admin/TeacherAllocation");
 	}
 
 	private void listTeacherSubjectClass(HttpServletRequest request, HttpServletResponse response)

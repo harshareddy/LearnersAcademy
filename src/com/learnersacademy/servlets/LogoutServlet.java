@@ -32,7 +32,7 @@ public class LogoutServlet extends HttpServlet {
 			}
 
 		}
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/admin/signin.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/admin/login.jsp");
 		request.setAttribute("loginmessage", "Logout Succesfull");
 		requestDispatcher.forward(request, response);
 	}

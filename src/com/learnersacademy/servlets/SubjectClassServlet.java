@@ -101,7 +101,7 @@ public class SubjectClassServlet extends HttpServlet {
 
 		subjectClassDAO.createSubjectClass(subjectclass);
 
-		response.sendRedirect(request.getContextPath() + "/SubjectAllocation");
+		response.sendRedirect(request.getContextPath() + "/admin/SubjectAllocation");
 
 	}
 
@@ -138,7 +138,7 @@ public class SubjectClassServlet extends HttpServlet {
 			subjectClassDAO.updateSubjectClass(subjectclass);
 		}
 
-		response.sendRedirect(request.getContextPath() + "/SubjectAllocation");
+		response.sendRedirect(request.getContextPath() + "/admin/SubjectAllocation");
 
 	}
 	
@@ -151,7 +151,7 @@ public class SubjectClassServlet extends HttpServlet {
 			subjectClassDAO.deleteSubjectClass(Integer.parseInt(subjectclassId));
 
 		}
-		response.sendRedirect(request.getContextPath() + "/SubjectAllocation");		
+		response.sendRedirect(request.getContextPath() + "/admin/SubjectAllocation");		
 	}
 
 	private void listSubjectClass(HttpServletRequest request, HttpServletResponse response)
