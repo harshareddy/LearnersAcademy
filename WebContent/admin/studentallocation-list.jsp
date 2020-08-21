@@ -36,7 +36,8 @@
 			              <c:out value="${student.sclass.name}"></c:out>
 			            </td>			            
 			            <td>
-			              <a href="<%=request.getContextPath()%>/StudentAllocation?action=edit&id=<c:out value="${student.id}"></c:out>" class="btn btn-outline-primary">Edit</a>			            
+			              <a href="<%=request.getContextPath()%>/StudentAllocation?action=edit&id=<c:out value="${student.id}"></c:out>" class="btn btn-outline-primary">Edit</a>
+			               <a href="<%=request.getContextPath()%>/StudentAllocation?action=delete&id=<c:out value="${student.id}"></c:out>" class="btn btn-outline-danger">delete</a>			            
 			            </td>
 		            
 		            </tr>    

@@ -18,7 +18,7 @@
 		 <table class="table table-striped">
 		  <thead class="thead-dark">
 		    <tr> 
-		      <th>Id</th>
+		      <th>TeacherId</th>
 		      <th>First Name</th>
 		      <th>Last Name</th>
 		      <th>Email Address</th>

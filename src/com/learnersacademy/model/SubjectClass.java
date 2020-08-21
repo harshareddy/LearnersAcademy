@@ -18,6 +18,8 @@ public class SubjectClass {
 	private Subject subject;
 
 	private Sclass sclass;
+	
+	private Teacher teacher;
 
 	public SubjectClass() {
 		super();
@@ -39,7 +41,7 @@ public class SubjectClass {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="SUJBECT_CLASS_ID")
+	@Column(name="SUBJECT_CLASS_ID")
 	public int getId() {
 		return id;
 	}
@@ -66,6 +68,17 @@ public class SubjectClass {
 
 	public void setSclass(Sclass sclass) {
 		this.sclass = sclass;
+	}
+    
+
+	@ManyToOne
+	@JoinColumn(name="TEACHER_ID")
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 	@Override

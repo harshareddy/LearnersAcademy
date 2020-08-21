@@ -11,20 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.learnersacademy.dao.SubjectClassDAO;
 import com.learnersacademy.dao.TeacherDAO;
-import com.learnersacademy.dao.TeacherSubjectClassDAO;
 import com.learnersacademy.model.SubjectClass;
 import com.learnersacademy.model.Teacher;
-import com.learnersacademy.model.TeacherSubjectClass;
 
 public class TeacherSubjectClassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private TeacherSubjectClassDAO teacherSubjectClassDAO;
+
 	private TeacherDAO teacherDAO;
 	private SubjectClassDAO subjectClassDAO;
 
 	public TeacherSubjectClassServlet() {
 		super();
-		teacherSubjectClassDAO = new TeacherSubjectClassDAO();
+
 		teacherDAO = new TeacherDAO();
 		subjectClassDAO = new SubjectClassDAO();
 	}
@@ -38,14 +36,6 @@ public class TeacherSubjectClassServlet extends HttpServlet {
 		}
 
 		switch (action) {
-		case "new":
-
-			newTeacherSubjectClass(request, response);
-			break;
-		case "insert":
-
-			insertTeacherSubjectClass(request, response);
-			break;
 		case "edit":
 
 			editTeacherSubjectClass(request, response);
@@ -71,52 +61,19 @@ public class TeacherSubjectClassServlet extends HttpServlet {
 		}
 	}
 
-	private void newTeacherSubjectClass(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		List<Teacher> teacherList = teacherDAO.getAllTeachers();
-		List<SubjectClass> subjectClassList = subjectClassDAO.getAllSubjectClass();
-
-		request.setAttribute("teacherList", teacherList);
-		request.setAttribute("subjectClassList", subjectClassList);
-
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/teacherallocation-form.jsp");
-		rd.forward(request, response);
-
-	}
-
-	private void insertTeacherSubjectClass(HttpServletRequest request, HttpServletResponse response)
-			throws IOException {
-		String teacherid = request.getParameter("teacherid");
-		String subjectclassid = request.getParameter("subjectclassid");
-
-		if (teacherid != null && subjectclassid != null) {
-			Teacher teacher = teacherDAO.getTeacher(Integer.parseInt(teacherid));
-			SubjectClass subjectClass = subjectClassDAO.getSubjectClass(Integer.parseInt(subjectclassid));
-			TeacherSubjectClass teacherSubjectClass = new TeacherSubjectClass(subjectClass, teacher);
-			teacherSubjectClassDAO.createTeacherSubjectClass(teacherSubjectClass);
-
-		}
-		response.sendRedirect(request.getContextPath() + "/TeacherAllocation");
-
-	}
-
 	private void editTeacherSubjectClass(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String teacher_allocation_id = request.getParameter("id");
+		String id = request.getParameter("id");
 		List<Teacher> teacherList = teacherDAO.getAllTeachers();
-		List<SubjectClass> subjectClassList = subjectClassDAO.getAllSubjectClass();
-		TeacherSubjectClass teacherSubjectClass = null;
-		if (teacher_allocation_id != null) {
+		SubjectClass subjectClass = null;
 
-			teacherSubjectClass = teacherSubjectClassDAO
-					.getTeacherSubjectClass(Integer.parseInt(teacher_allocation_id));
+		if (id != null) {
 
+			subjectClass = subjectClassDAO.getSubjectClass(Integer.parseInt(id));
 		}
 
 		request.setAttribute("teacherList", teacherList);
-		request.setAttribute("subjectClassList", subjectClassList);
-		request.setAttribute("teacherSubjectClass", teacherSubjectClass);
+		request.setAttribute("subjectClass", subjectClass);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/teacherallocation-form.jsp");
 		rd.forward(request, response);
@@ -126,15 +83,14 @@ public class TeacherSubjectClassServlet extends HttpServlet {
 	private void updateTeacherSubjectClass(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		String teacherid = request.getParameter("teacherid");
-		String subjectclassid = request.getParameter("subjectclassid");
-		String teacherAssociationId = request.getParameter("id");
 
-		if (teacherid != null && subjectclassid != null && teacherAssociationId != null) {
+		String subjectClassId = request.getParameter("id");
+
+		if (teacherid != null && subjectClassId != null) {
 			Teacher teacher = teacherDAO.getTeacher(Integer.parseInt(teacherid));
-			SubjectClass subjectClass = subjectClassDAO.getSubjectClass(Integer.parseInt(subjectclassid));
-			int id = Integer.parseInt(teacherAssociationId);
-			TeacherSubjectClass teacherSubjectClass = new TeacherSubjectClass(id, subjectClass, teacher);
-			teacherSubjectClassDAO.updateTeacherSubjectClass(teacherSubjectClass);
+			SubjectClass subjectClass = subjectClassDAO.getSubjectClass(Integer.parseInt(subjectClassId));
+			subjectClass.setTeacher(teacher);
+			subjectClassDAO.updateSubjectClass(subjectClass);
 
 		}
 		response.sendRedirect(request.getContextPath() + "/TeacherAllocation");
@@ -143,10 +99,13 @@ public class TeacherSubjectClassServlet extends HttpServlet {
 
 	private void deleteTeacherSubjectClass(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-		String teacherAssociationId = request.getParameter("id");
+		String subjectClassId = request.getParameter("id");
 
-		if (teacherAssociationId != null) {
-			teacherSubjectClassDAO.deleteTeacherSubjectClass(Integer.parseInt(teacherAssociationId));
+		if (subjectClassId != null) {
+
+			SubjectClass subjectclass = subjectClassDAO.getSubjectClass(Integer.parseInt(subjectClassId));
+			subjectclass.setTeacher(null);
+			subjectClassDAO.updateSubjectClass(subjectclass);
 		}
 
 		response.sendRedirect(request.getContextPath() + "/TeacherAllocation");
@@ -155,9 +114,9 @@ public class TeacherSubjectClassServlet extends HttpServlet {
 	private void listTeacherSubjectClass(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		List<TeacherSubjectClass> teacherSubjectClassList = teacherSubjectClassDAO.getAllTeacherSubjectClass();
+		List<SubjectClass> subjectClassList = subjectClassDAO.getAllSubjectClass();
 
-		request.setAttribute("teacherSubjectClassList", teacherSubjectClassList);
+		request.setAttribute("subjectClassList", subjectClassList);
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/teacherallocation-list.jsp");
 		rd.forward(request, response);
 

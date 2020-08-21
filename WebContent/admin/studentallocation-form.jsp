@@ -12,7 +12,7 @@
  <jsp:include page="header.jsp"></jsp:include>
   <div class= "container">
      <br/><br/>
-     <form action="<%=request.getContextPath() %>/StudentAllocation">          
+               
                    
           <h2>Update Student Allocation</h2>
                  <input type="hidden" name="action" value="update">   

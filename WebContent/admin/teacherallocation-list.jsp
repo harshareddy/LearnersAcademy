@@ -14,37 +14,35 @@
  <div class= "container">
  <br/><br/>
 
-  <a href="<%=request.getContextPath()%>/TeacherAllocation?action=new" class="btn btn-outline-success">Add New Subject Allocation</a>
-		 <table class="table table-striped">
+  		 <table class="table table-striped">
 		  <thead class="thead-dark">
 		    <tr> 
-		      <th>Subject Class Id</th>
-		      <th>Teacher Name</th>
+		      <th>SubjectClassId</th>		      
 		      <th>Class Name</th>
 		      <th>Subject Name</th>
-		      
+		      <th>Teacher Name</th>		      
 		      <th> Action</th>
 		    </tr>
 		  </thead>
-		    <c:forEach var="teacherSubjectClass" items="${teacherSubjectClassList}">
+		    <c:forEach var="subjectClass" items="${subjectClassList}">
 		            <tr>
 			            <td>
-			               <c:out value="${teacherSubjectClass.id}"></c:out>
+			               <c:out value="${subjectClass.id}"></c:out>
+			            </td>
+			            
+			            <td>
+			               <c:out value="${subjectClass.getSclass().getName()}"></c:out>
 			            </td>
 			            <td>
-			               <c:out value="${teacherSubjectClass.getTeacher().getFirstName()}"></c:out>
-			               <c:out value="${teacherSubjectClass.getTeacher().getLastName()}"></c:out>
+			               <c:out value="${subjectClass.getSubject().getName()}"></c:out>
 			            </td>
 			            <td>
-			               <c:out value="${teacherSubjectClass.getSubjectClass().getSclass().getName()}"></c:out>
-			            </td>
+			               <c:out value="${subjectClass.getTeacher().getFirstName()}"></c:out>
+			               <c:out value="${subjectClass.getTeacher().getLastName()}"></c:out>
+			            </td>			           
 			            <td>
-			               <c:out value="${teacherSubjectClass.getSubjectClass().getSubject().getName()}"></c:out>
-			            </td>
-			            			           
-			            <td>
-			            <a href="<%=request.getContextPath()%>/TeacherAllocation?action=edit&id=<c:out value="${teacherSubjectClass.id}"></c:out>" class="btn btn-outline-primary">Edit</a>
-			            <a href="<%=request.getContextPath()%>/TeacherAllocation?action=delete&id=<c:out value="${teacherSubjectClass.id}"></c:out>" class="btn btn-outline-danger">Delete</a>
+			            <a href="<%=request.getContextPath()%>/TeacherAllocation?action=edit&id=<c:out value="${subjectClass.id}"></c:out>" class="btn btn-outline-primary">Edit</a>
+			            <a href="<%=request.getContextPath()%>/TeacherAllocation?action=delete&id=<c:out value="${subjectClass.id}"></c:out>" class="btn btn-outline-danger">Delete</a>
 			            </td>
 		            
 		            </tr>    

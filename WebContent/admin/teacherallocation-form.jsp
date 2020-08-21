@@ -12,31 +12,32 @@
  <jsp:include page="header.jsp"></jsp:include>
   <div class= "container">
      <br/><br/>
-     <form action="<%=request.getContextPath() %>/TeacherAllocation">          
-          <c:if test="${teacherSubjectClass==null}">
-                 <h2>Add Teacher Allocation</h2>
-                 <input type="hidden" name="action" value="insert">
-          </c:if>
-          <c:if test="${teacherSubjectClass!=null}">
+     
+     
                 <h2>Update Teacher Allocation</h2>
+           <form action="<%=request.getContextPath() %>/TeacherAllocation">
                  <input type="hidden" name="action" value="update">
-                 <input type="hidden" name="id" value='<c:out value="${teacherSubjectClass.id}"></c:out>'>
-          </c:if>          
+                 <div class="form-group">
+		            <label for="id">SubjectClassId</label>
+		            <input type="text" class="form-control" name ="id" value='<c:out value="${subjectClass.id}"></c:out>' readonly>
+		         </div>
+		         <div class="form-group">
+		            <label for="subject">Subject</label>
+		            <input type="text" class="form-control" name ="subject" value='<c:out value="${subjectClass.getSubject().getName()}"></c:out>' readonly>
+		         </div>
+		         <div class="form-group">
+		            <label for="id">Class</label>
+		            <input type="text" class="form-control" name ="sclass" value='<c:out value="${subjectClass.getSclass().getName()}"></c:out>' readonly>
+		         </div>               
 
            <div class="form-group">
     		  <select name="teacherid" class="form-control">
 			     <c:forEach items="${teacherList}" var="teacher">
-			        <option value="${teacher.id}" ${teacher.id == teacherSubjectClass.teacher.id ? 'selected="selected"' : ''} >${teacher.firstName} ${teacher.lastName}</option>
+			        <option value="${teacher.id}" ${teacher.id == subjectClass.teacher.id ? 'selected="selected"' : ''} >${teacher.firstName} ${teacher.lastName}</option>
 			    </c:forEach>
             </select>
             </div>
-            <div class="form-group">
-    		  <select name="subjectclassid" class="form-control">
-			    <c:forEach items="${subjectClassList}" var="subjectClass">
-			        <option value="${subjectClass.id}" ${subjectClass.id == teacherSubjectClass.subjectClass.id ? 'selected="selected"' : ''}>${subjectClass.sclass.name} ${subjectClass.subject.name}</option>
-			    </c:forEach>
-            </select>
-            </div>
+            
             
 		  <button type="submit" class="btn btn-primary">Submit</button>
       </form>

@@ -17,7 +17,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<%=request.getContextPath() %>/Classes">Classes</a>	          
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="<%=request.getContextPath() %>/ClassReport">ClassReport</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -51,7 +51,7 @@
           <a class="dropdown-item" href="<%=request.getContextPath()%>/StudentAllocation">StudentAllocation</a>          
         </div>     
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="LogoutController" method="post">      
+    <form class="form-inline my-2 my-lg-0" action="Logout" method="post">      
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
     </form>
   </div>

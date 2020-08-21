@@ -39,7 +39,7 @@
 		<mapping class="com.learnersacademy.model.Teacher"/>
 		<mapping class="com.learnersacademy.model.Student"/>
 	    <mapping class="com.learnersacademy.model.SubjectClass"/>
-	    <mapping class="com.learnersacademy.model.TeacherSubjectClass"/>
+<!-- 	    <mapping class="com.learnersacademy.model.TeacherSubjectClass"/> -->
 		<!--<mapping class="com.learnersacademy.model.Sclass"/>
 		<mapping class="com.learnersacademy.model.Teacher"/>
 		<mapping class="com.learnersacademy.model.Student"/> -->

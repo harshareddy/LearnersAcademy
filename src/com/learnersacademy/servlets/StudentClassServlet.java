@@ -37,6 +37,9 @@ public class StudentClassServlet extends HttpServlet {
 		case "update":
 			updateStudentClass(request, response);
 			break;
+		case "delete":
+			deleteStudentClass(request, response);
+			break;
 
 		case "list":
 			listStudentClass(request, response);
@@ -47,6 +50,20 @@ public class StudentClassServlet extends HttpServlet {
 			listStudentClass(request, response);
 			break;
 		}
+
+	}
+
+	private void deleteStudentClass(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String studentId = request.getParameter("id");
+
+		if (studentId != null) {
+			Student student = studentDAO.getStudent(Integer.parseInt(studentId));
+			student.setSclass(null);
+			studentDAO.updateStudent(student);
+
+		}
+		
+		response.sendRedirect(request.getContextPath()+"/StudentAllocation");
 
 	}
 
@@ -82,7 +99,7 @@ public class StudentClassServlet extends HttpServlet {
 			studentDAO.updateStudent(student);
 
 		}
-	   response.sendRedirect(request.getContextPath() + "/StudentAllocation");
+		response.sendRedirect(request.getContextPath() + "/StudentAllocation");
 
 	}
 
