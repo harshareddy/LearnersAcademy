@@ -22,14 +22,6 @@
                  <input type="hidden" name="action" value="update">
                  <input type="hidden" name="id" value='<c:out value="${subjectclass.id}"></c:out>'>
           </c:if>          
-
-           <div class="form-group">
-    		  <select name="subject" class="form-control">
-			    <c:forEach items="${subjectList}" var="subject">
-			        <option value="${subject.id}" ${subject.id == subjectclass.subject.id ? 'selected="selected"' : ''}>${subject.name}</option>
-			    </c:forEach>
-            </select>
-            </div>
             <div class="form-group">
     		  <select name="sclass" class="form-control">
 			    <c:forEach items="${sclassList}" var="sclass">
@@ -37,6 +29,14 @@
 			    </c:forEach>
             </select>
             </div>
+           <div class="form-group">
+    		  <select name="subject" class="form-control">
+			    <c:forEach items="${subjectList}" var="subject">
+			        <option value="${subject.id}" ${subject.id == subjectclass.subject.id ? 'selected="selected"' : ''}>${subject.name}</option>
+			    </c:forEach>
+            </select>
+            </div>
+           
             
 		  <button type="submit" class="btn btn-primary">Submit</button>
       </form>

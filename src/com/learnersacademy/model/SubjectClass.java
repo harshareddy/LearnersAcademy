@@ -1,5 +1,6 @@
 package com.learnersacademy.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ public class SubjectClass {
 	private Subject subject;
 
 	private Sclass sclass;
-	
+
 	private Teacher teacher;
 
 	public SubjectClass() {
@@ -41,7 +42,7 @@ public class SubjectClass {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="SUBJECT_CLASS_ID")
+	@Column(name = "SUBJECT_CLASS_ID")
 	public int getId() {
 		return id;
 	}
@@ -50,8 +51,9 @@ public class SubjectClass {
 		this.id = id;
 	}
 
-	@ManyToOne
-	@JoinColumn(name="SUBJECT_ID")
+	@ManyToOne( cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
+	@JoinColumn(name = "SUBJECT_ID")
 	public Subject getSubject() {
 		return subject;
 	}
@@ -60,8 +62,9 @@ public class SubjectClass {
 		this.subject = subject;
 	}
 
-	@ManyToOne
-	@JoinColumn(name="CLASS_ID")
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
+	@JoinColumn(name = "CLASS_ID")
 	public Sclass getSclass() {
 		return sclass;
 	}
@@ -69,10 +72,10 @@ public class SubjectClass {
 	public void setSclass(Sclass sclass) {
 		this.sclass = sclass;
 	}
-    
 
-	@ManyToOne
-	@JoinColumn(name="TEACHER_ID")
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
+	@JoinColumn(name = "TEACHER_ID")
 	public Teacher getTeacher() {
 		return teacher;
 	}

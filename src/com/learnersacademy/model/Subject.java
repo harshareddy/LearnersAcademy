@@ -1,12 +1,15 @@
 package com.learnersacademy.model;
 
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +19,8 @@ public class Subject {
 	private int id;
 
 	private String name;
+	
+	private Set<SubjectClass> subjectClassSet;
 
 	public Subject() {
 	}
@@ -49,6 +54,15 @@ public class Subject {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+   @OneToMany(mappedBy = "subject",cascade = CascadeType.ALL)	
+	public Set<SubjectClass> getSubjectClassSet() {
+		return subjectClassSet;
+	}
+
+	public void setSubjectClassSet(Set<SubjectClass> subjectClassSet) {
+		this.subjectClassSet = subjectClassSet;
 	}
 
 	@Override

@@ -1,7 +1,8 @@
-	package com.learnersacademy.servlets;
+package com.learnersacademy.servlets;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.learnersacademy.dao.SclassDAO;
 import com.learnersacademy.model.Sclass;
+import com.learnersacademy.model.Student;
 
 public class ClassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -78,14 +80,32 @@ public class ClassServlet extends HttpServlet {
 
 	}
 
-	private void deleteClass(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void deleteClass(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		String id = request.getParameter("id");
+		boolean isstudentsetEmpty = true;
 		if (id != null) {
+			Sclass sclass = sclassDao.getSClass(Integer.parseInt(id));
 
-			sclassDao.deleteSClass(Integer.parseInt(id));
+			Set<Student> studentSet = sclass.getStudentSet();
+
+			if (studentSet.isEmpty()) {
+				sclassDao.deleteSClass(Integer.parseInt(id));
+			} else {
+				isstudentsetEmpty = false;
+			}
+
 		}
 
-		response.sendRedirect(request.getContextPath() + "/admin/Classes");
+		if (isstudentsetEmpty) {
+			response.sendRedirect(request.getContextPath() + "/admin/Classes");
+		} else {
+
+			String couldnotDeleteClass = " Could not delete class as students still exist";
+			request.setAttribute("CouldnotDeleteClass", couldnotDeleteClass);
+			listClass(request, response);
+		}
+
 	}
 
 	private void updateClass(HttpServletRequest request, HttpServletResponse response) throws IOException {

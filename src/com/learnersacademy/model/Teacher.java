@@ -1,10 +1,14 @@
 package com.learnersacademy.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +25,8 @@ public class Teacher {
 
 	private String phoneNumber;
 
+	private Set<SubjectClass> subjecClassSet;
+
 	public Teacher() {
 	}
 
@@ -30,9 +36,7 @@ public class Teacher {
 		this.emailAddress = emailAddress;
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
-   
+
 	public Teacher(int id, String firstName, String lastName, String emailAddress, String phoneNumber) {
 		super();
 		this.id = id;
@@ -83,6 +87,17 @@ public class Teacher {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	@OneToMany(mappedBy = "teacher", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
+
+	public Set<SubjectClass> getSubjecClassSet() {
+		return subjecClassSet;
+	}
+
+	public void setSubjecClassSet(Set<SubjectClass> subjecClassSet) {
+		this.subjecClassSet = subjecClassSet;
 	}
 
 	@Override

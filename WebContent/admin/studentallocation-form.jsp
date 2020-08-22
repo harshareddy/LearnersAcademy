@@ -15,29 +15,30 @@
                
                    
           <h2>Update Student Allocation</h2>
-                 <input type="hidden" name="action" value="update">   
-    <form action="<%=request.getContextPath() %>/admin/StudentAlloction" method="get">                
-           <div class="form-group">
-		      <label for="id">First Name</label>
-		      <input type="text" class="form-control" name ="id" value='<c:out value="${student.id}"></c:out>' readonly>
-		   </div>
-           <div class="form-group">
-		    <label for="firstname">First Name</label>
-		    <input type="text" class="form-control" name ="firstname" value='<c:out value="${student.firstName}"></c:out>' readonly>
-		  </div>
-		  <div class="form-group">
-		    <label for="lastname">Last Name</label>
-		    <input type="text" class="form-control" name ="lastname" value='<c:out value="${student.lastName}"></c:out>' readonly>
-		  </div>
-		  <div class="form-group">
-    		  <select name="sclassid" class="form-control">
-			    <c:forEach items="${sclassList}" var="sclass">
-			        <option value="${sclass.id}" ${sclass.id == student.sclass.id ? 'selected="selected"' : ''}>${sclass.name}</option>
-			    </c:forEach>
-            </select>
-            </div>
-		  
-		  <button type="submit" class="btn btn-primary">Submit</button>
+                    
+           <form action="<%=request.getContextPath()%>/admin/StudentAllocation" method="get">
+               <input type="hidden" name="action" value="update">                
+	           <div class="form-group">
+			      <label for="id">First Name</label>
+			      <input type="text" class="form-control" name ="id" value='<c:out value="${student.id}"></c:out>' readonly>
+			   </div>
+	           <div class="form-group">
+			    <label for="firstname">First Name</label>
+			    <input type="text" class="form-control" name ="firstname" value='<c:out value="${student.firstName}"></c:out>' readonly>
+			  </div>
+			  <div class="form-group">
+			    <label for="lastname">Last Name</label>
+			    <input type="text" class="form-control" name ="lastname" value='<c:out value="${student.lastName}"></c:out>' readonly>
+			  </div>
+			  <div class="form-group">
+	    		  <select name="sclassid" class="form-control">
+				    <c:forEach items="${sclassList}" var="sclass">
+				        <option value="${sclass.id}" ${sclass.id == student.sclass.id ? 'selected="selected"' : ''}>${sclass.name}</option>
+				    </c:forEach>
+	            </select>
+	            </div>
+			  
+			  <button type="submit" class="btn btn-primary">Submit</button>
       </form>
   </div>
 

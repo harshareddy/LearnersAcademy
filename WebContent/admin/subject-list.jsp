@@ -23,6 +23,7 @@
 		      <th> Action</th>
 		    </tr>
 		  </thead>
+		  <tbody>
 		    <c:forEach var="subject" items="${subjectList}">
 		            <tr>
 			            <td>
@@ -37,9 +38,8 @@
 			            </td>
 		            
 		            </tr>    
-		    </c:forEach>
-		
-		  <tbody></tbody>
+		    </c:forEach>		      
+		  </tbody>
 		 </table>
  </div>
  

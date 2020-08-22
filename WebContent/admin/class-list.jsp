@@ -23,6 +23,7 @@
 		      <th> Action</th>
 		    </tr>
 		  </thead>
+		  <tbody>
 		    <c:forEach var="sclass" items="${sclassList}">
 		            <tr>
 			            <td>
@@ -37,10 +38,10 @@
 			            </td>
 		            
 		            </tr>    
-		    </c:forEach>
-		
-		  <tbody></tbody>
+		    </c:forEach>		    
+		  </tbody>		  
 		 </table>
+		 <h5><p style="color:red;" ><c:out value="${CouldnotDeleteClass}"></c:out></p></h5>
  </div>
  
 

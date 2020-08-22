@@ -1,5 +1,6 @@
 package com.learnersacademy.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,10 +23,8 @@ public class Student {
 	private String emailAddress;
 
 	private String phoneNumber;
-	
-	private Sclass sclass;
 
-	
+	private Sclass sclass;
 
 	public Student() {
 	}
@@ -89,10 +88,9 @@ public class Student {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
-	@ManyToOne
-	@JoinColumn(name="CLASS_ID")	
+
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	@JoinColumn(name = "CLASS_ID")
 	public Sclass getSclass() {
 		return sclass;
 	}

@@ -57,22 +57,19 @@ public class SubjectClassServlet extends HttpServlet {
 			updateSubjectClass(request, response);
 			break;
 		case "delete":
-			 deleteSubjectClass(request,response);
-			 break;
+			deleteSubjectClass(request, response);
+			break;
 
 		case "list":
 			listSubjectClass(request, response);
 
 			break;
-			
 
 		default:
 			break;
 		}
 
 	}
-
-	
 
 	private void newSubjectClass(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -111,11 +108,11 @@ public class SubjectClassServlet extends HttpServlet {
 		List<Sclass> sclassList = sclassDAO.getAllSClass();
 
 		String subjectclassId = request.getParameter("id");
-		SubjectClass subjectclass = subjectClassDAO.getSubjectClass(Integer.parseInt(subjectclassId));		
+		SubjectClass subjectclass = subjectClassDAO.getSubjectClass(Integer.parseInt(subjectclassId));
 		request.setAttribute("subjectclass", subjectclass);
 		request.setAttribute("subjectList", subjectList);
 		request.setAttribute("sclassList", sclassList);
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/subjectclass-form.jsp");
 		rd.forward(request, response);
 
@@ -141,17 +138,17 @@ public class SubjectClassServlet extends HttpServlet {
 		response.sendRedirect(request.getContextPath() + "/admin/SubjectAllocation");
 
 	}
-	
+
 	private void deleteSubjectClass(HttpServletRequest request, HttpServletResponse response) throws IOException {
-	
+
 		String subjectclassId = request.getParameter("id");
-		
-		if (subjectclassId!= null) {
-			
+
+		if (subjectclassId != null) {
+
 			subjectClassDAO.deleteSubjectClass(Integer.parseInt(subjectclassId));
 
 		}
-		response.sendRedirect(request.getContextPath() + "/admin/SubjectAllocation");		
+		response.sendRedirect(request.getContextPath() + "/admin/SubjectAllocation");
 	}
 
 	private void listSubjectClass(HttpServletRequest request, HttpServletResponse response)
