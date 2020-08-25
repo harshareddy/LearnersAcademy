@@ -54,6 +54,7 @@
 		
 		  <tbody></tbody>
 		 </table>
+		 <h4><p style="color:red";><c:out value="${teacherErrorMessage}"></c:out> </p></h4>
  </div>
  
 

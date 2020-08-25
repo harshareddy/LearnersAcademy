@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -90,7 +91,7 @@ public class Teacher {
 	}
 
 	@OneToMany(mappedBy = "teacher", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
+			CascadeType.REFRESH },fetch = FetchType.EAGER)
 
 	public Set<SubjectClass> getSubjectClassSet() {
 		return subjectClassSet;

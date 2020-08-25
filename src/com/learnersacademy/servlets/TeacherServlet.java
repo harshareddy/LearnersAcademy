@@ -100,18 +100,32 @@ public class TeacherServlet extends HttpServlet {
 
 	}
 
-	private void deleteTeacher(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void deleteTeacher(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String id = request.getParameter("id");
-		
-		System.out.println("deletTeacher");
+		Boolean subjectClassNotExists = true;
+
+		System.out.println("deleteTeacher");
 
 		if (id != null) {
+			Teacher teacher = teacherDao.getTeacher(Integer.parseInt(id));
+			if (teacher != null) {
+				subjectClassNotExists = teacher.getSubjectClassSet().isEmpty();
 
-			teacherDao.deleteTeacher(Integer.parseInt(id));
+				if (subjectClassNotExists == true) {
+					teacherDao.deleteTeacher(Integer.parseInt(id));
+				}
+
+			}
 
 		}
+		
+		if (subjectClassNotExists==false) {
+			
+			request.setAttribute("teacherErrorMessage", "Could not delete teacher as they are mapped to subjects and classes");
+		}
 
-		response.sendRedirect(request.getContextPath() + "/admin/Teachers");
+		
+		listTeacher(request, response);
 
 	}
 
