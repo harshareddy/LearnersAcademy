@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import com.learnersacademy.model.Teacher;
 import com.learnersacademy.utils.HibernateUtil;
@@ -108,6 +109,33 @@ public class TeacherDAO {
 
 		}
 		return teacher;
+
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Teacher> getAllTeachers(int classId) {
+
+		Transaction transaction = null;
+		List<Teacher> teacherList = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("Select tea From Teacher tea" 
+			                                   + " inner join tea.subjectClassSet subcls"
+					+ " where subcls.sclass.id =:classId "
+					+ " order by tea.id");
+			query.setParameter("classId", classId);
+			teacherList = (List<Teacher>)query.getResultList();
+			transaction.commit();
+
+		} catch (Exception e) {
+
+			System.out.println("Exception Caught :" + e.getMessage());
+			e.printStackTrace();
+			transaction.rollback();
+
+		}
+		return teacherList;
 
 	}
 

@@ -25,7 +25,7 @@ public class Teacher {
 
 	private String phoneNumber;
 
-	private Set<SubjectClass> subjecClassSet;
+	private Set<SubjectClass> subjectClassSet;
 
 	public Teacher() {
 	}
@@ -92,12 +92,12 @@ public class Teacher {
 	@OneToMany(mappedBy = "teacher", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
 
-	public Set<SubjectClass> getSubjecClassSet() {
-		return subjecClassSet;
+	public Set<SubjectClass> getSubjectClassSet() {
+		return subjectClassSet;
 	}
 
-	public void setSubjecClassSet(Set<SubjectClass> subjecClassSet) {
-		this.subjecClassSet = subjecClassSet;
+	public void setSubjectClassSet(Set<SubjectClass> subjectClassSet) {
+		this.subjectClassSet = subjectClassSet;
 	}
 
 	@Override
