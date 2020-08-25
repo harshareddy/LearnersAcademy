@@ -4,9 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-
-import com.learnersacademy.model.Sclass;
 import com.learnersacademy.model.Subject;
 import com.learnersacademy.utils.HibernateUtil;
 
@@ -112,31 +109,6 @@ public class SubjectDAO {
 
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<Subject> getAllSubjects(int class_id) {
-
-		Transaction transaction = null;
-		List<Subject> subjectList = null ;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-
-			transaction = session.beginTransaction();
-			Query query = session.createQuery("Select sub  From Subject as sub"
-					                       +" inner join sub.subjectClassSet subcls"
-					                       + " where subcls.sclass.id =: class_id");
-             query.setParameter("class_id", class_id);
-             subjectList = (List<Subject>) query.getResultList();
-             
-			transaction.commit();
-
-		} catch (Exception e) {
-
-			System.out.println("Exception Caught :" + e.getMessage());
-			transaction.rollback();
-
-		}
-		return subjectList;
-
-	}
 
 
 }

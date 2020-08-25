@@ -21,53 +21,33 @@
 				<tr>
 					<th>SubjectId</th>
 					<th>SubjectName</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${subjectList}" var="subject">
-					<tr>
-						<td><c:out value="${subject.id}"></c:out></td>
-						<td><c:out value="${subject.name}"></c:out></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-        <br />
-	    <br />
-		<h3>Teachers</h3>
-		<table class="table table-striped">
-			<thead class="thead-dark">
-			 
-				<tr>
 					<th>TeacherId</th>
 					<th>TeacherName</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${teacherList}" var="teacher">
+				<c:forEach items="${subjectClassSet}" var="subjectClass">
 					<tr>
-						<td><c:out value="${teacher.id}"></c:out></td>
+						<td><c:out value="${subjectClass.subject.id}"></c:out></td>
+						<td><c:out value="${subjectClass.subject.name}"></c:out></td>
+						<td><c:out value="${subjectClass.teacher.id}"></c:out></td>
 						<td>
-						   <c:out value="${teacher.firstName}"></c:out>
-						   <c:out value="${teacher.lastName}"></c:out>
+						   <c:out value="${subjectClass.teacher.firstName}"></c:out>
+						   <c:out value="${subjectClass.teacher.lastName}"></c:out>
+						
 						</td>
-
 					</tr>
 				</c:forEach>
-
 			</tbody>
-
-
 		</table>
-		<br />
-	    <br />
-
+        <br />
+	    <br />		
 		<h3>Students</h3>
 		<table class="table table-striped">
 			<thead class="thead-dark">
 				<tr>
-					<th>studentid</th>
-					<th>studentName</th>
+					<th>StudentId</th>
+					<th>StudentName</th>
 				</tr>
 			</thead>
 			<tbody>

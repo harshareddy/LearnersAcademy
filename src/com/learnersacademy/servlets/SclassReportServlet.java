@@ -11,25 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.learnersacademy.dao.SclassDAO;
-import com.learnersacademy.dao.SubjectDAO;
-import com.learnersacademy.dao.TeacherDAO;
 import com.learnersacademy.model.Sclass;
 import com.learnersacademy.model.Student;
-import com.learnersacademy.model.Subject;
-import com.learnersacademy.model.Teacher;
+
+import com.learnersacademy.model.SubjectClass;
 
 public class SclassReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private SclassDAO sclassDAO;
-	private SubjectDAO subjectDAO;
-	private TeacherDAO teacherDAO;
 
 	public SclassReportServlet() {
 		super();
-
 		sclassDAO = new SclassDAO();
-		teacherDAO = new TeacherDAO();
-		subjectDAO = new SubjectDAO();
 
 	}
 
@@ -55,18 +48,18 @@ public class SclassReportServlet extends HttpServlet {
 
 	}
 
-	private void createReport(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void createReport(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		int sclassId = Integer.parseInt(request.getParameter("sclassid"));
 
-		List<Subject> subjectList = subjectDAO.getAllSubjects(sclassId);
+		Sclass sclass = sclassDAO.getSClass(sclassId);
+		Set<SubjectClass> subjectClassSet = sclass.getSubjectClassSet();
 		Set<Student> studentSet = sclassDAO.getSClass(sclassId).getStudentSet();
-		List<Teacher> teacherList = teacherDAO.getAllTeachers(sclassId);
 
-		request.setAttribute("subjectList", subjectList);
 		request.setAttribute("studentSet", studentSet);
-		request.setAttribute("teacherList", teacherList);
-		
+		request.setAttribute("subjectClassSet", subjectClassSet);
+
 		RequestDispatcher rd = request.getRequestDispatcher("classreport-list.jsp");
 		rd.forward(request, response);
 

@@ -58,7 +58,7 @@ public class Sclass {
 		Name = name;
 	}
 
-	@OneToMany(mappedBy = "sclass", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "sclass", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	public Set<SubjectClass> getSubjectClassSet() {
 		return subjectClassSet;
 	}
