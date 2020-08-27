@@ -25,7 +25,7 @@
 
            <div class="form-group">
 		    <label for="sclassname">Class Name</label>
-		    <input type="text" class="form-control" name ="sclassname" value='<c:out value="${sclass.name}"></c:out>'>
+		    <input type="text" class="form-control" name ="sclassname" value='<c:out value="${sclass.name}"></c:out>' required>
 		  </div>
 		  <button type="submit" class="btn btn-primary">Submit</button>
       </form>

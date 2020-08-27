@@ -25,11 +25,11 @@
 
            <div class="form-group">
 		    <label for="fristname">First Name</label>
-		    <input type="text" class="form-control" name ="firstname" value='<c:out value="${teacher.firstName}"></c:out>'>
+		    <input type="text" class="form-control" name ="firstname" value='<c:out value="${teacher.firstName}"></c:out>' required>
 		  </div>
 		             <div class="form-group">
 		    <label for="lastname">Last Name</label>
-		    <input type="text" class="form-control" name ="lastname" value='<c:out value="${teacher.lastName}"></c:out>'>
+		    <input type="text" class="form-control" name ="lastname" value='<c:out value="${teacher.lastName}"></c:out>' required>
 		  </div>
 		             <div class="form-group">
 		    <label for="emailaddress">Email Address</label>

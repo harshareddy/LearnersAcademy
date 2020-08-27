@@ -15,7 +15,7 @@
 	<br />
 	<div class="container">
 
-		<h3>Subjects</h3>
+		<h3>Subjects & Teachers</h3>
 		<table class="table table-striped">
 			<thead class="thead-dark">
 

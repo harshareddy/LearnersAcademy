@@ -1,11 +1,11 @@
 package com.learnersacademy.model;
 
-
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +19,7 @@ public class Subject {
 	private int id;
 
 	private String name;
-	
+
 	private Set<SubjectClass> subjectClassSet;
 
 	public Subject() {
@@ -56,7 +56,7 @@ public class Subject {
 		this.name = name;
 	}
 
-   @OneToMany(mappedBy = "subject",cascade = CascadeType.ALL)	
+	@OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	public Set<SubjectClass> getSubjectClassSet() {
 		return subjectClassSet;
 	}

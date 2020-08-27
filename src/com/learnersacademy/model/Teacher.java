@@ -47,22 +47,6 @@ public class Teacher {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getEmailAddress() {
-		return emailAddress;
-	}
-
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "TEACHER_ID")
@@ -74,6 +58,7 @@ public class Teacher {
 		this.id = id;
 	}
 
+	@Column(name="FIRST_NAME")
 	public String getFirstName() {
 		return firstName;
 	}
@@ -82,6 +67,7 @@ public class Teacher {
 		this.firstName = firstName;
 	}
 
+	@Column(name="LAST_NAME")
 	public String getLastName() {
 		return lastName;
 	}
@@ -90,8 +76,26 @@ public class Teacher {
 		this.lastName = lastName;
 	}
 
+	@Column(name="EMAIL_ADDRESS")
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	@Column(name="PHONE_NUMBER")
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 	@OneToMany(mappedBy = "teacher", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH },fetch = FetchType.EAGER)
+			CascadeType.REFRESH }, fetch = FetchType.EAGER)
 
 	public Set<SubjectClass> getSubjectClassSet() {
 		return subjectClassSet;

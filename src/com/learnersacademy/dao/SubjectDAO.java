@@ -34,15 +34,22 @@ public class SubjectDAO {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
 			transaction = session.beginTransaction();
-			Subject subject = session.get(Subject.class, id);			
+			Subject subject = session.get(Subject.class, id);
+			
 			if (subject != null) {
+				
+			
+				System.out.println("...deleting the subject.....");
 				session.delete(subject);
 			}
+			System.out.println("...commit the transaction....");
 			transaction.commit();
 
 		} catch (Exception e) {
 
-			System.out.println("Exception Caught :" + e.getMessage());
+			//System.out.println("Exception Caught :" + e.getMessage());
+			e.printStackTrace();
+			
 			transaction.rollback();
 
 		}
@@ -75,7 +82,8 @@ public class SubjectDAO {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
 			transaction = session.beginTransaction();
-			subjectList = session.createQuery("From Subject").getResultList();
+			subjectList = session.createQuery("From Subject su"
+					+ " Order by su.name").getResultList();
 
 			transaction.commit();
 

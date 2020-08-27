@@ -1,10 +1,9 @@
 package com.learnersacademy.dao;
 
 import java.util.List;
-
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import com.learnersacademy.model.Sclass;
 import com.learnersacademy.utils.HibernateUtil;
 
@@ -36,8 +35,8 @@ public class SclassDAO {
 
 			transaction = session.beginTransaction();
 			Sclass sClass = session.get(Sclass.class, id);
-			session.save(sClass);
 			if (sClass != null) {
+
 				session.delete(sClass);
 			}
 			transaction.commit();
@@ -76,7 +75,7 @@ public class SclassDAO {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
 			transaction = session.beginTransaction();
-			sClassList = session.createQuery("From Sclass", Sclass.class).getResultList();
+			sClassList = session.createQuery("From Sclass sc" + " order by sc.name ", Sclass.class).getResultList();
 
 			transaction.commit();
 
@@ -96,8 +95,13 @@ public class SclassDAO {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
 			transaction = session.beginTransaction();
+			System.out.println("Open session ");
 			sClass = session.get(Sclass.class, id);
+			Hibernate.initialize(sClass.getSubjectClassSet());
+			Hibernate.initialize(sClass.getStudentSet());
+			
 
+			System.out.println("Commit Session");
 			transaction.commit();
 
 		} catch (Exception e) {

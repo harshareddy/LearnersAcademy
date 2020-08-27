@@ -92,11 +92,11 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ErrorHandlerServlet</servlet-name>
-    <url-pattern>/admin/ErrorHandler</url-pattern>
+    <url-pattern>/ErrorHandler</url-pattern>
   </servlet-mapping>
   <error-page>
     <exception-type>java.lang.Throwable</exception-type>
-    <location>/admin/ErrorHandler</location>
+    <location>/ErrorHandler</location>
   </error-page>
   <servlet>
     <description></description>

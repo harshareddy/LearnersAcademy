@@ -33,7 +33,7 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath()%>/signin.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
     <form class="form-signin" action="<%=request.getContextPath()%>/admin/Login" method="post">

@@ -57,6 +57,7 @@ public class Student {
 		this.id = id;
 	}
 
+	@Column(name="FIRST_NAME")
 	public String getFirstName() {
 		return firstName;
 	}
@@ -65,6 +66,7 @@ public class Student {
 		this.firstName = firstName;
 	}
 
+	@Column(name="LAST_NAME")
 	public String getLastName() {
 		return lastName;
 	}
@@ -73,6 +75,7 @@ public class Student {
 		this.lastName = lastName;
 	}
 
+	@Column(name="EMAIL_ADDRESS")
 	public String getEmailAddress() {
 		return emailAddress;
 	}
@@ -81,6 +84,7 @@ public class Student {
 		this.emailAddress = emailAddress;
 	}
 
+	@Column(name="PHONE_NUMBER")
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}

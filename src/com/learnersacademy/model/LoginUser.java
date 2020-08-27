@@ -26,7 +26,8 @@ public class LoginUser {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+    
+	@Column(name="USER_NAME")
 	public String getUserName() {
 		return userName;
 	}
@@ -35,6 +36,7 @@ public class LoginUser {
 		this.userName = userName;
 	}
 
+	@Column(name="PASSWORD")
 	public String getPassword() {
 		return password;
 	}
@@ -43,6 +45,7 @@ public class LoginUser {
 		this.password = password;
 	}
 
+	@Column(name="ROLE")
 	public String getRole() {
 		return role;
 	}

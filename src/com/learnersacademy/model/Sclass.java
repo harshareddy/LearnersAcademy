@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +19,7 @@ public class Sclass {
 
 	private int id;
 
-	private String Name;
+	private String name;
 
 	private Set<SubjectClass> subjectClassSet;
 
@@ -29,13 +30,13 @@ public class Sclass {
 
 	public Sclass(String name) {
 		super();
-		Name = name;
+		this.name = name;
 	}
 
 	public Sclass(int id, String name) {
 		super();
 		this.id = id;
-		Name = name;
+		this.name = name;
 	}
 
 	@Id
@@ -51,14 +52,14 @@ public class Sclass {
 
 	@Column(name = "CLASS_NAME")
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
-	@OneToMany(mappedBy = "sclass", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "sclass", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	public Set<SubjectClass> getSubjectClassSet() {
 		return subjectClassSet;
 	}
@@ -68,7 +69,8 @@ public class Sclass {
 	}
 
 	@OneToMany(mappedBy = "sclass", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH },fetch = FetchType.EAGER)
+			CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	
 	public Set<Student> getStudentSet() {
 		return studentSet;
 	}
@@ -79,7 +81,7 @@ public class Sclass {
 
 	@Override
 	public String toString() {
-		return "Class [id=" + id + ", Name=" + Name + "]";
+		return "Class [id=" + id + ", Name=" + name + "]";
 	}
 
 }

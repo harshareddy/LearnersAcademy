@@ -28,15 +28,11 @@ public class LoginServlet extends HttpServlet {
 
 		String username = request.getParameter("inputemail");
 		String password = request.getParameter("password");
-		
-		RequestDispatcher requestDispatcher;
-		List<LoginUser> loginUserlist = loginuserDAO.getLoginUser(username, password,"admin_role");
-		
-		for (LoginUser loginUser : loginUserlist) {
-			System.out.println(loginUser);
-		}
 
-		if (username.equalsIgnoreCase("harshar@gmail.com") && password.equalsIgnoreCase("admin")) {
+		RequestDispatcher requestDispatcher;
+		List<LoginUser> loginUserlist = loginuserDAO.getLoginUser(username, password, "admin_role");
+
+		if (!loginUserlist.isEmpty()) {
 
 			HttpSession session = request.getSession(true);
 
