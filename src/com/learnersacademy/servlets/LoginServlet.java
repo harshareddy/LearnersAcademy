@@ -12,14 +12,17 @@ import javax.servlet.http.HttpSession;
 
 import com.learnersacademy.dao.LoginUserDAO;
 import com.learnersacademy.model.LoginUser;
+import com.learnersacademy.utils.EncryptionDecryptionAES;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private LoginUserDAO loginuserDAO;
+	private EncryptionDecryptionAES encryptionDecryptionAES;
 
 	public LoginServlet() {
 		super();
 		loginuserDAO = new LoginUserDAO();
+		encryptionDecryptionAES = new EncryptionDecryptionAES();
 
 	}
 
@@ -28,9 +31,16 @@ public class LoginServlet extends HttpServlet {
 
 		String username = request.getParameter("inputemail");
 		String password = request.getParameter("password");
+		String encryptPassword = null;
+		try {
+			 encryptPassword= encryptionDecryptionAES.encrypt(password);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		RequestDispatcher requestDispatcher;
-		List<LoginUser> loginUserlist = loginuserDAO.getLoginUser(username, password, "admin_role");
+		List<LoginUser> loginUserlist = loginuserDAO.getLoginUser(username, encryptPassword, "admin_role");
 
 		if (!loginUserlist.isEmpty()) {
 
