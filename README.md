@@ -25,4 +25,4 @@ The administrator can:
 There will be an option to view a Class Report which will show all the information about the class, such as the list of students, subjects, and teachers
 
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=OToPIndslOg)
+[![IMAGE ALT TEXT HERE](https://imgur.com/vgh8Dj8)](https://www.youtube.com/watch?v=OToPIndslOg)
