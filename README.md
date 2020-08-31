@@ -23,7 +23,3 @@ The administrator can:
 ● Get a master list of students (Each student must be assigned to a single class)
 
 There will be an option to view a Class Report which will show all the information about the class, such as the list of students, subjects, and teachers
-
-Project DemoVideo 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/OToPIndslOg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
