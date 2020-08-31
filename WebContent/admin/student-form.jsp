@@ -18,7 +18,7 @@
                  <input type="hidden" name="action" value="insert">
           </c:if>
           <c:if test="${student!=null}">
-                <h2>Update Teacher</h2>
+                <h2>Update Student</h2>
                  <input type="hidden" name="action" value="update">
                  <input type="hidden" name="id" value='<c:out value="${student.id}"></c:out>'>
           </c:if>          

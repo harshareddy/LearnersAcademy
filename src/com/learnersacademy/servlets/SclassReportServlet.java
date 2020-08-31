@@ -59,6 +59,7 @@ public class SclassReportServlet extends HttpServlet {
 
 		request.setAttribute("studentSet", studentSet);
 		request.setAttribute("subjectClassSet", subjectClassSet);
+		request.setAttribute("sclass", sclass);
 
 		RequestDispatcher rd = request.getRequestDispatcher("classreport-list.jsp");
 		rd.forward(request, response);

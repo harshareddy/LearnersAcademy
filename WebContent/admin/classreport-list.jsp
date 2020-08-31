@@ -14,7 +14,10 @@
 	<br />
 	<br />
 	<div class="container">
-
+	   <br/>
+	   <h2> <c:out value="${sclass.name}"></c:out> Report </h2>
+	   <br/>
+	   <br/>
 		<h3>Subjects & Teachers</h3>
 		<table class="table table-striped">
 			<thead class="thead-dark">
